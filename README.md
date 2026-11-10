@@ -95,22 +95,25 @@ El panel centralizado se llama `Colegiotec-Monitoreo` y muestra las últimas 24 
 ![Mockup del Dashboard](assets/dashboard-mockup.png)
 
 ### Distribución de Widgets:
-* **Fila 1 (Estado General y Costos):**
+
+* **Fila 1 (Nivel Ejecutivo y Costos):**
   * *Widget 1 (Número simple):* Gasto acumulado del mes (`EstimatedCharges` en USD).
   * *Widget 2 (Número simple):* Servidores no sanos según el ALB (`UnHealthyHostCount`).
-  * *Widget 3 (Número simple):* Fallas de las instancias (`StatusCheckFailed`).
-  * *Widget 4 (Estado de alarmas):* Semáforo verde / rojo con las 9 alarmas.
-* **Fila 2 (Cómputo y Aplicación, EC2 + ALB):**
-  * *Widget 5 (Gráfico de líneas, 24 h):* Uso de CPU de los 2 servidores (`CPUUtilization`).
-  * *Widget 6 (Gráfico de líneas, 24 h):* Errores de la aplicación (`HTTPCode_Target_5XX_Count`).
-* **Fila 3 (Base de Datos RDS):**
-  * *Widget 7 (Número y línea):* Espacio libre en disco en GB (`FreeStorageSpace`), que muestra el consumo de almacenamiento.
-  * *Widget 8 (Gráfico de líneas, 24 h):* Conexiones activas a la base (`DatabaseConnections`).
-* **Fila 4 (Red, VPC / NAT Gateway):**
-  * *Widget 9 (Gráfico de líneas, 24 h):* Datos que salen a internet por NAT A y NAT B (`BytesOutToDestination`).
-  * *Widget 10 (Número simple):* Errores de asignación de puertos (`ErrorPortAllocation`).
+  * *Widget 3 (Número simple):* Fallas de las instancias EC2 (`StatusCheckFailed`).
+  * *Widget 4 (Estado de alarmas):* Semáforo verde / rojo con el estado general de las alertas configuradas (`Alarms Status`).
 
-**¿Qué vería primero?** La fila 1: si todo está en verde y el gasto del mes es normal, no necesito mirar más. Si algo está en rojo, bajo a las filas siguientes para encontrar la causa (cómputo, base de datos o red).
+* **Fila 2 (Capa de Cómputo y Aplicación - EC2 + ALB):**
+  * *Widget 5 (Gráfico de líneas temporal, 24 h):* Porcentaje de uso de CPU (`CPUUtilization`) de las instancias web.
+  * *Widget 6 (Gráfico de líneas temporal, 24 h):* Errores de servidor de la aplicación devueltos por el balanceador (`HTTPCode_Target_5XX_Count`).
+
+* **Fila 3 (Capa de Base de Datos RDS):**
+  * *Widget 7 (Gauge / Barra de progreso):* Espacio libre en disco disponible (`FreeStorageSpace` en GB), que muestra el consumo de almacenamiento.
+  * *Widget 8 (Gráfico de líneas temporal, 24 h):* Conexiones activas a la base de datos (`DatabaseConnections`) a lo largo del tiempo.
+
+* **Fila 4 (Capa de Red - VPC / NAT Gateway):**
+  * *Widget 9 (Gráfico de líneas temporal, 24 h):* Datos que salen a internet a través del NAT Gateway (`BytesOutToDestination`).
+  * *Widget 10 (Número simple):* Errores de asignación de puertos para salida a internet en el NAT Gateway (`ErrorPortAllocation`).
+
 
 ---
 
